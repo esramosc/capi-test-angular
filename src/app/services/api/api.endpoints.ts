@@ -3,7 +3,8 @@ export const ENDPOINTS = {
         index: 'contacts',
         show: 'contacts/show',
         store: 'contacts',
-        delete: 'contacts'
+        delete: 'contacts',
+        report: 'report'
     },
     phones: {
         store: 'phones',

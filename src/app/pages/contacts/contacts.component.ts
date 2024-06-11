@@ -3,6 +3,7 @@ import { ContactsService } from '../../services/contacts/contacts.service';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { Router } from '@angular/router';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-contacts',
@@ -11,16 +12,20 @@ import { Router } from '@angular/router';
   styleUrl: './contacts.component.scss',
   imports: [
     CommonModule,
-    NavbarComponent
+    NavbarComponent,
+    PaginationComponent
   ]
 })
 export class ContactsComponent implements OnInit {
 
   page = 1;
   contacts: any = [];
-  paginate = {
+  meta = {
+    from: 0,
+    to: 0,
+    total: 0,
     current_page: 1,
-    total_pages: 1
+    last_page: 1,
   };
 
   constructor(
@@ -36,9 +41,12 @@ export class ContactsComponent implements OnInit {
     const response = await this.contactsService.getContacts(this.page);
     if (response.data) {
       this.contacts = response.data;
-      this.paginate = {
+      this.meta = {
         current_page: response.current_page,
-        total_pages: response.total
+        total: response.total,
+        to: response.to,
+        last_page: response.last_page,
+        from: response.from
       }
     }
   }
@@ -60,6 +68,15 @@ export class ContactsComponent implements OnInit {
     if (response) {
       this.getUsers();
     }
+  }
+
+  changePage(page: number) {
+    this.page = page;
+    this.getUsers();
+  }
+
+  goToReport() {
+    this.router.navigateByUrl('report');
   }
 
 }

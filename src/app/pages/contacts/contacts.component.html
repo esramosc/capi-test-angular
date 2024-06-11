@@ -2,7 +2,7 @@
   class="w-full h-auto min-h-screen overflow-y-auto bg-gray-200"
 >
   <app-navbar
-    title="Contactos"
+    Contactos="Contactos"
   ></app-navbar>
 
   <div class="w-full px-8 py-4 mb-6">
@@ -64,6 +64,25 @@
         (click)="addContact()"  
       >
     </div>
+  </div>
+
+  <div class = "group fixed top-0 right-0 p-2  flex items-end justify-end w-24 h-24 ">
+    <!-- main -->
+    <div class = "text-white shadow-xl flex items-center justify-center p-3 rounded-full bg-gradient-to-r from-green-800 to-green-400 z-50 absolute  ">
+      <img 
+        src="/assets/icons/search.svg" 
+        alt="Agregar Contacto" 
+        class="w-6 h-6 cursor-pointer"
+        (click)="goToReport()"  
+      >
+    </div>
+  </div>
+
+  <div class="flex justify-center w-full">
+    <app-pagination
+      [meta]="meta"
+      (changePage)="changePage($event)"
+    ></app-pagination>
   </div>
 
 </div>

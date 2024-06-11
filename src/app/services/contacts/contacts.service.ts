@@ -41,4 +41,25 @@ export class ContactsService {
     return response;
   }
 
+  async getContactsByFilter(params: any, page: number) {
+    let endpoint = `${ENDPOINTS.contacts.report}?page=${page}`;
+    if (params.name) {
+      endpoint += `&name=${params.name}`;
+    }
+    if (params.phone) {
+      endpoint += `&name=${params.phone}`;
+    }
+    if (params.state) {
+      endpoint += `&name=${params.state}`;
+    }
+    if (params.city) {
+      endpoint += `&name=${params.city}`;
+    }
+    if (params.with) {
+      endpoint += `&name=${params.with}`;
+    }
+    const response = await this.apiService.get(endpoint);
+    return response;
+  }
+
 }
