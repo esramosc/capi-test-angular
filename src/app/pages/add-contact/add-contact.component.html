@@ -9,6 +9,7 @@
     <form 
       class="mx-auto bg-white p-4 rounded-lg"
       [formGroup]="contactForm"
+      (ngSubmit)="onSubmit(contactForm)"
     >
       <div class="mb-5">
         <label for="email" class="block mb-2 text-sm font-medium text-gray-900">
@@ -21,12 +22,178 @@
           formControlName="name"
         />
       </div>
+
+      <div class="w-full pb-2 border-b border-blue-600">
+        <h3 class="text-lg uppercase font-semibold">Teléfonos</h3>
+
+        <div formArrayName="phones">
+          @for (phone of phones.controls; track phone; let i = $index) {
+            <div 
+              class="w-full flex gap-4 my-2"
+              [formGroupName]="i"
+            >
+              <label for="phone{{i}}">
+                Número de teléfono
+              </label>
+              <input 
+                type="tel" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" 
+                id="phone{{i}}" 
+                formControlName="phone"
+              />
+              <button 
+                type="button" 
+                class="bg-gradient-to-tr from-red-800 to-red-200 px-6 py-2 text-center rounded-lg my-2"
+                (click)="removePhone(i)"
+              >
+                Eliminar
+              </button>
+              @if (id !== 0 && contactData.phones[i]) {
+                <button 
+                  type="button" 
+                  class="bg-gradient-to-tr from-green-800 to-green-200 px-6 py-2 text-center rounded-lg my-2"
+                  (click)="updatePhone(i)"
+                >
+                  Actualizar
+                </button>
+              }
+            </div>
+          }
+          <button 
+            type="button" 
+            class="bg-gradient-to-tr from-blue-600 to-blue-200 px-6 py-2 text-center rounded-lg my-2"
+            (click)="addPhone()"
+          >
+            Agregar número
+          </button>
+        </div>
+
+      </div>
+
+      <div class="w-full pb-2 border-b border-blue-600">
+        <h3 class="text-lg uppercase font-semibold">Correos electrónicos</h3>
+
+        <div formArrayName="emails">
+          @for (email of emails.controls; track email; let i = $index) {
+            <div 
+              class="w-full flex gap-4 my-2"
+              [formGroupName]="i"
+            >
+              <label for="phone{{i}}">
+                Correo electrónico
+              </label>
+              <input 
+                type="email" 
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" 
+                id="email{{i}}" 
+                formControlName="email"
+              />
+              <button 
+                type="button" 
+                class="bg-gradient-to-tr from-red-800 to-red-200 px-6 py-2 text-center rounded-lg my-2"
+                (click)="removeEmail(i)"
+              >
+                Eliminar
+              </button>
+              @if (id !== 0 && contactData.emails[i]) {
+                <button 
+                  type="button" 
+                  class="bg-gradient-to-tr from-green-800 to-green-200 px-6 py-2 text-center rounded-lg my-2"
+                  (click)="updateEmail(i)"
+                >
+                  Actualizar
+                </button>
+              }
+            </div>
+          }
+          <button 
+            type="button" 
+            class="bg-gradient-to-tr from-blue-600 to-blue-200 px-6 py-2 text-center rounded-lg my-2"
+            (click)="addEmail()"
+          >
+            Agregar Correo electrónico
+          </button>
+        </div>
+        
+      </div>
+
+      <div class="w-full pb-2 border-b border-blue-600">
+        <h3 class="text-lg uppercase font-semibold">Direcciones</h3>
+
+        <div formArrayName="addresses">
+          @for (address of addresses.controls; track address; let i = $index) {
+            <div 
+              class="w-full flex gap-4 my-2"
+              [formGroupName]="i"
+            >
+              <div>
+                <label for="state{{i}}">
+                  Estado
+                </label>
+                <input 
+                  type="text" 
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" 
+                  id="state{{i}}" 
+                  formControlName="state"
+                />
+              </div>
+              <div>
+                <label for="state{{i}}">
+                  Ciudad
+                </label>
+                <input 
+                  type="text" 
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" 
+                  id="city{{i}}" 
+                  formControlName="city"
+                />
+              </div>
+              <div>
+                <label for="state{{i}}">
+                  Dirección
+                </label>
+                <input 
+                  type="text" 
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" 
+                  id="address{{i}}" 
+                  formControlName="address"
+                />
+              </div>
+              <button 
+                type="button" 
+                class="bg-gradient-to-tr from-red-800 to-red-200 px-6 py-2 text-center rounded-lg my-2"
+                (click)="removeAddress(i)"
+              >
+                Eliminar
+              </button>
+              @if (id !== 0 && contactData.addresses[i]) {
+                <button 
+                  type="button" 
+                  class="bg-gradient-to-tr from-green-800 to-green-200 px-6 py-2 text-center rounded-lg my-2"
+                  (click)="updateAddress(i)"
+                >
+                  Actualizar
+                </button>
+              }
+            </div>
+          }
+          <button 
+            type="button" 
+            class="bg-gradient-to-tr from-blue-600 to-blue-200 px-6 py-2 text-center rounded-lg my-2"
+            (click)="addAddress()"
+          >
+            Agregar dirección
+          </button>
+        </div>
+        
+      </div>
       
       <button 
         type="submit" 
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center">
-          Guardar
-        </button>
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2 text-center mt-4"
+      >
+        {{id !== 0 ? 'Actualizar' : 'Guardar'}}
+      </button>
     </form>
   
   </div>

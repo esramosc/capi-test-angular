@@ -31,10 +31,20 @@
                   />
                 </div>
                 <div>
-                  <img src="/assets/icons/edit.svg" alt="Editar" class="w-6 h-6 cursor-pointer" />
+                  <img 
+                    src="/assets/icons/edit.svg" 
+                    alt="Editar" 
+                    class="w-6 h-6 cursor-pointer"
+                    (click)="editContact(contact.id)"
+                  />
                 </div>
                 <div>
-                  <img src="/assets/icons/trash.svg" alt="Eliminar" class="w-6 h-6 cursor-pointer" />
+                  <img 
+                    src="/assets/icons/trash.svg" 
+                    alt="Eliminar" 
+                    class="w-6 h-6 cursor-pointer" 
+                    (click)="deleteContact(contact.id)"
+                  />
                 </div>
               </div>
           </div>

@@ -51,4 +51,15 @@ export class ContactsComponent implements OnInit {
     this.router.navigateByUrl('add-contact');
   }
 
+  editContact(contactId: number) {
+    this.router.navigateByUrl(`edit-contact/${contactId}`);
+  }
+
+  async deleteContact(contactId: number) {
+    const response = await this.contactsService.deleteContact(contactId);
+    if (response) {
+      this.getUsers();
+    }
+  }
+
 }

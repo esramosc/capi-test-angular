@@ -12,5 +12,9 @@ export const routes: Routes = [
     {
         path: 'add-contact',
         loadComponent: () => import('./pages/add-contact/add-contact.component').then(r => r.AddContactComponent)
+    },
+    {
+        path: 'edit-contact/:id',
+        loadComponent: () => import('./pages/add-contact/add-contact.component').then(r => r.AddContactComponent)
     }
 ];

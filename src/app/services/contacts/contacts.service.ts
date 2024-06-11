@@ -23,4 +23,22 @@ export class ContactsService {
     return response;
   }
 
+  async saveContact(params: any) {
+    const endpoint = ENDPOINTS.contacts.store;
+    const response = await this.apiService.post(endpoint, params);
+    return response;
+  }
+
+  async updateContact(params: any, contactId: number) {
+    const endpoint = `${ENDPOINTS.contacts.store}/${contactId}`;
+    const response = await this.apiService.put(endpoint, params);
+    return response;
+  }
+
+  async deleteContact(contactId: number) {
+    const endpoint = `${ENDPOINTS.contacts.delete}/${contactId}`;
+    const response = await this.apiService.delete(endpoint);
+    return response;
+  }
+
 }
