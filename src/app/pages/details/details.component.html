@@ -1,0 +1,85 @@
+<div
+  class="w-full h-auto min-h-screen overflow-y-auto bg-gray-200"
+>
+  <app-navbar
+    [title]="details?.name"
+  ></app-navbar>
+
+  <div class="w-full p-4 h-auto">
+    <div class="py-2 border-b border-gray-800 w-full">
+      <h3 class="text-2xl font-semibold uppercase pb-2">
+        Teléfonos
+      </h3>
+      @for (phone of details?.phones; track $index) {
+        <div class="text-blue-800 font-semibold flex">
+          <img 
+            src="/assets/icons/trash.svg" 
+            alt="Eliminar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          >
+          <img 
+            src="/assets/icons/edit.svg" 
+            alt="Editar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          > 
+          {{phone.phone}}
+        </div>
+      }
+    </div>
+
+    <div class="py-2 border-b border-gray-800 w-full">
+      <h3 class="text-2xl font-semibold uppercase pb-2">
+        Correos electrónicos
+      </h3>
+      @for (email of details?.emails; track $index) {
+        <div class="text-blue-800 font-semibold flex">
+          <img 
+            src="/assets/icons/trash.svg" 
+            alt="Eliminar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          >
+          <img 
+            src="/assets/icons/edit.svg" 
+            alt="Editar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          > 
+          {{email.email}}
+        </div>
+      }
+    </div>
+
+    <div class="py-2 border-b border-gray-800 w-full">
+      <h3 class="text-2xl font-semibold uppercase pb-2">
+        Direcciones
+      </h3>
+      @for (address of details?.addresses; track $index) {
+        <div class="text-blue-800 font-semibold flex">
+          <img 
+            src="/assets/icons/trash.svg" 
+            alt="Eliminar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          >
+          <img 
+            src="/assets/icons/edit.svg" 
+            alt="Editar"
+            class="w-4 h-4 cursor-pointer mr-2"
+          >
+          {{address.state}}, {{address.city}}, {{address.address}}
+        </div>
+      }
+    </div>
+  
+  </div>
+
+  <div class = "group fixed bottom-0 right-0 p-2  flex items-end justify-end w-24 h-24 ">
+    <!-- main -->
+    <div class = "text-white shadow-xl flex items-center justify-center p-3 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 z-50 absolute  ">
+      <img 
+        src="/assets/icons/close.svg" 
+        alt="Agregar Contacto" 
+        class="w-6 h-6 cursor-pointer"
+        (click)="back()"  
+      >
+    </div>
+  </div>
+</div>
